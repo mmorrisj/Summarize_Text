@@ -36,6 +36,10 @@ def clean_content(content):
     
     text=expand_contractions(text)
     
+#    text = re.sub('[^a-zA-Z]', ' ', text )
+
+    text = re.sub(r'\s+', ' ', text)
+    
 #    text=remove_special_characters(text)
     
 #    text=(lemmatize_text(text))
@@ -54,17 +58,13 @@ def build_summaries(df):
 
         article_text=clean_content(doc)
 
-        formatted_article_text = re.sub('[^a-zA-Z]', ' ', article_text )
-
-        formatted_article_text = re.sub(r'\s+', ' ', formatted_article_text)
-
-        sentence_list = nltk.sent_tokenize(formatted_article_text)
+        sentence_list = nltk.sent_tokenize(article_text)
 
         stopwords = nltk.corpus.stopwords.words('english')
 
         word_frequencies = {}
 
-        for word in nltk.word_tokenize(formatted_article_text):
+        for word in nltk.word_tokenize(article_text):
 
             if word not in stopwords:
 

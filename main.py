@@ -15,7 +15,9 @@ filepath='C:\\Users\\589636\\Documents\\Jupyter_Notebook\\Deep Learning\\'
 with open(filepath+filename+filetype) as f: 
     text=json.load(f)
 
-df=pd.DataFrame(text)
+df=pd.DataFrame(text[400:600])
+
+df=df.head(100)
 
 summaries=build_summaries(df)
 
@@ -29,4 +31,4 @@ df.to_excel('./'+filename+'_output.xlsx')
 
 visualize_labels(df)
 
-print('Complete. Processed '+str(len(df))+'records.')
+print('Complete. Processed '+str(len(df))+' records.')
